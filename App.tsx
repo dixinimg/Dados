@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 
-// Importando as faces do dado com os novos nomes
 const fotosDado = [
   require('./assets/lado1.png'),
   require('./assets/lado2.png'),
@@ -19,26 +18,23 @@ const fotosDado = [
   require('./assets/lado6.png'),
 ];
 
-// Lógica de cores baseada no valor (exigência do professor)
 function definirCorDeFundo(valor: number): string {
   if (valor >= 1 && valor <= 3) {
-    return '#FDE2E4'; // Cor mais leve (Rosa claro)
+    return '#FDE2E4'; // cor mais leve 
   }
-  return '#C5A3FF'; // Cor mais forte (Lilás/Roxo)
+  return '#C5A3FF'; // cor mais forte
 }
 
 export default function App() {
-  // Estados para controlar o dado atual e o bloqueio de repetição
   const [dadoAtual, setDadoAtual] = useState<number>(1);
   const [dadoAnterior, setDadoAnterior] = useState<number>(1);
 
-  // Função disparada ao clicar no dado
+  // função disparada ao clicar no dado
   function rolarDado() {
-    setDadoAnterior(dadoAtual); // Salva a jogada anterior
+    setDadoAnterior(dadoAtual); // salva a jogada anterior
 
     let resultadoSorteio = 0;
 
-    // Estrutura de repetição para impedir números iguais seguidos
     do {
       resultadoSorteio = Math.floor(Math.random() * 6) + 1;
     } while (resultadoSorteio === dadoAtual);
@@ -46,7 +42,6 @@ export default function App() {
     setDadoAtual(resultadoSorteio);
   }
 
-  // Define a cor da tela toda vez que o dadoAtual muda
   const corDinamica = definirCorDeFundo(dadoAtual);
 
   return (
@@ -68,7 +63,6 @@ export default function App() {
           />
         </TouchableOpacity>
 
-        {/* Texto exato exigido pelo professor */}
         <Text style={estilos.textoSorteado}>
           Você tirou o número {dadoAtual}!
         </Text>
@@ -78,7 +72,7 @@ export default function App() {
   );
 }
 
-// Estilização simplificada e com visual diferente
+// estilizacao 
 const estilos = StyleSheet.create({
   telaPrincipal: {
     flex: 1,
